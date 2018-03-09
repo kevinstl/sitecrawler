@@ -17,9 +17,6 @@ public class ExtractMasterNodeListService {
 
     public void showList() throws IOException {
         Document doc = Jsoup.connect("https://masternodes.online/").get();
-//        doc.select("table#masternodes_table > tbody > tr > td > strong > a").forEach(System.out::println);
-//        doc.select("table#masternodes_table > tbody > tr > td > strong > a").
-//                forEach(item->System.out.println(item.attr("href")));
         List<Element> masternodePageLinks = doc.select("table#masternodes_table > tbody > tr > td > strong > a");
 
         masternodePageLinks.forEach(item->showPageLinkContent(item));
@@ -29,7 +26,8 @@ public class ExtractMasterNodeListService {
 
     private void showPageLinkContent(Element masternodePageLink) {
 
-        System.out.println(masternodePageLink.attr("href"));
+        System.out.println(masternodePageLink.text());
+//        System.out.println(masternodePageLink.attr("href"));
 
         Document doc = null;
         try {
@@ -38,7 +36,20 @@ public class ExtractMasterNodeListService {
             e.printStackTrace();
         }
 
-        doc.select("a:contains(github)").forEach(System.out::println);
+        List<Element> githubLinks = doc.select("a:contains(github)");
+        githubLinks.forEach(item->showGithubPageContent(item));
+
+    }
+
+    private void showGithubPageContent(Element githubPageLink){
+        Document doc = null;
+        try {
+            doc = Jsoup.connect(githubPageLink.attr("href")).get();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println(doc.select("li.commits > a > span").text());
 
     }
 }
