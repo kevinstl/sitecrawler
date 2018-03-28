@@ -7,14 +7,19 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 
 @Component
-public class PopulateMasternodesOnlineSupplementDocument {
+public class MasternodesOnlineSupplementDocumentService {
 
     @Autowired
     private ExtractMasternodeListService extractMasternodeListService;
+
+    @Autowired
+    private HtmlMarshaller htmlMarshaller;
 
     public void populate() throws IOException {
         Elements masternodeList = extractMasternodeListService.extractMasternodeList();
 
         System.out.println("masterNodeList: " + masternodeList);
+
+        htmlMarshaller.masternodeRowsToMasternodeOnlineSupplements(masternodeList);
     }
 }

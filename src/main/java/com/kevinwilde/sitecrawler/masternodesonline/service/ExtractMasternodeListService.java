@@ -30,7 +30,7 @@ public class ExtractMasternodeListService {
 //        System.out.println(masternodeHomeHtml);
         System.out.println(masternodeList);
 
-        masternodeList.forEach(item->showPageLinkContent(item));
+//        masternodeList.forEach(item->showPageLinkContent(item));
 
         return masternodeList;
     }
