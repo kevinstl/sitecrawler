@@ -1,6 +1,7 @@
 package com.kevinwilde.sitecrawler.masternodesonline.config;
 
-import com.kevinwilde.sitecrawler.masternodesonline.service.ExtractMasterNodeListService;
+import com.kevinwilde.sitecrawler.masternodesonline.service.ExtractMasternodeListService;
+import com.kevinwilde.sitecrawler.masternodesonline.service.PopulateMasternodesOnlineSupplementDocument;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -12,10 +13,13 @@ import java.io.IOException;
 public class MasternodesOnlineConfig {
 
     @Autowired
-    private ExtractMasterNodeListService extractMasterNodeListService;
+    private ExtractMasternodeListService extractMasternodeListService;
+
+    @Autowired
+    private PopulateMasternodesOnlineSupplementDocument populateMasternodesOnlineSupplementDocument;
 
     public void start() throws IOException {
-        extractMasterNodeListService.showList();
+        populateMasternodesOnlineSupplementDocument.populate();
     }
 
 }

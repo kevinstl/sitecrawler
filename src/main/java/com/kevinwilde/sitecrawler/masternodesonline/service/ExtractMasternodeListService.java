@@ -1,27 +1,38 @@
 package com.kevinwilde.sitecrawler.masternodesonline.service;
 
+import org.jsoup.HttpStatusException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.util.List;
 
 @Component
-public class ExtractMasterNodeListService {
+public class ExtractMasternodeListService {
+
+    @Autowired
+    private DocumentFactory documentFactory;
 
     public void hello(){
         System.out.println("hello");
     }
 
-    public void showList() throws IOException {
-        Document doc = Jsoup.connect("https://masternodes.online/").get();
-        List<Element> masternodePageLinks = doc.select("table#masternodes_table > tbody > tr > td > strong > a");
+    public Elements extractMasternodeList() throws IOException {
+        Document masternodeHomeHtml = documentFactory.getDocumentBasedOnUrl("https://masternodes.online/");
+//        Elements masternodePageLinks = document.select("table#masternodes_table > tbody > tr > td > strong > a");
+        Elements masternodeList = masternodeHomeHtml.select("table#masternodes_table > tbody > tr");
 
-        masternodePageLinks.forEach(item->showPageLinkContent(item));
 
-        System.out.println();
+//        System.out.println(masternodeHomeHtml);
+        System.out.println(masternodeList);
+
+        masternodeList.forEach(item->showPageLinkContent(item));
+
+        return masternodeList;
     }
 
     private void showPageLinkContent(Element masternodePageLink) {
@@ -49,7 +60,9 @@ public class ExtractMasterNodeListService {
             e.printStackTrace();
         }
 
-        System.out.println(doc.select("li.commits > a > span").text());
+        if(doc != null){
+            System.out.println(doc.select("li.commits > a > span").text());
+        }
 
     }
 }
