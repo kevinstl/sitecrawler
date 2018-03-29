@@ -87,20 +87,6 @@ public class HtmlMarshallerTest {
     }
 
 
-    @Test
-    public void masternodeRowsToMasternodeOnlineSupplements(){
 
-        Document doc = Jsoup.parse(masternodeTableRowXap + masternodeTableRowFrm, "", Parser.xmlParser());
-        Elements elements = doc.select("tr");
-
-        List<MasternodesOnlineSupplement> masternodesOnlineSupplements =
-                classUnderTest.masternodeRowsToMasternodeOnlineSupplements(elements);
-
-        assertNotNull(masternodesOnlineSupplements);
-        assertNotNull(masternodesOnlineSupplements.get(0).getCoin());
-        assertEquals("Apollon Coin (XAP)", masternodesOnlineSupplements.get(0).getCoin());
-        assertNotNull(masternodesOnlineSupplements.get(1).getCoin());
-        assertEquals("Ferrum Coin (FRM)", masternodesOnlineSupplements.get(1).getCoin());
-    }
 
 }

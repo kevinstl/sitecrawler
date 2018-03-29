@@ -33,12 +33,5 @@ public class HtmlMarshaller {
         return masternodesOnlineSupplement;
     }
 
-    public List<MasternodesOnlineSupplement> masternodeRowsToMasternodeOnlineSupplements(Elements masternodeTrs) {
 
-        List<MasternodesOnlineSupplement> masternodesOnlineSupplements = new ArrayList<>();
-
-        masternodeTrs.forEach(item-> masternodesOnlineSupplements.add(masternodeRowToMasternodeOnlineSupplementObject(item)));
-
-        return masternodesOnlineSupplements;
-    }
 }

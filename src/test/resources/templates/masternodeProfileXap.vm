@@ -1,0 +1,448 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Language" content="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="Apollon Coin masternode, XAP masternode, masternode, masternodes, cryptocurrency, comparison, roi, stats">
+    <meta name="description" content="Apollon Coin (XAP) masternode investment comparison tool features the most accurate and detailed stats and a free anonymous monitoring tool to track your own masternodes.">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="-1">
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow, snippet, archive">
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="/css/jqvmap.min.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqvmap/1.5.1/jquery.vmap.min.js"></script>
+    <script src="/maps/158/map_data.js"></script>
+    <script type="text/javascript" src="/js/jquery.vmap.world.js" charset="utf-8"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-108091935-1"></script>
+    <script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'UA-108091935-1');</script>
+    <title>Apollon Coin (XAP) masternode</title>
+</head>
+<body>
+<script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+<script>
+    (function() {
+        if (typeof _bsa !== 'undefined' && _bsa) {
+            _bsa.init('fancybar', 'CKYIT2QE');
+        }
+    })();
+</script>
+<div class="navbar navbar-inverse">
+    <div class="container">
+        <div class="navbar-header">
+            <a href="/" class="navbar-brand">masternodes.online</a>
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-main">
+            <ul class="nav navbar-nav">
+                <li> <a href="/new-masternode-coins/" title="Upcoming masternodes">Upcoming MNs</a> </li>
+                <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Connect<span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="https://betweenblocks.org/category/6/masternodetalk">Masternode forum</a></li>
+                        <li><a href="https://twitter.com/_mn_o_">Follow us on Twitter</a></li>
+                    </ul> </li>
+                <li> <a href="/monitoring/" title="Masternodes monitoring">Monitoring</a> </li>
+                <li> <a href="/faq/">FAQ</a> </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Theme<span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="?theme=dark">Dark</a></li>
+                        <li><a href="?theme=light">Light</a></li>
+                    </ul> </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="page-header" id="banner">
+        <div class="row">
+            <div class="col-lg-3">
+                <a href="/"><img src="/images/logo.png" width="130px" alt="masternodes.online" title="masternodes.online"></a>&amp;nbspBETA
+            </div>
+            <div class="col-lg-9" align="right">
+                Masternode coins:
+                <strong>196</strong>, Masternodes online:
+                <strong>101,098</strong>, Masternodes worth:
+                <strong>$2,085,045,662</strong> /
+                <strong>262,157 BTC</strong>
+                <br>24h volume:
+                <strong>$120,594,812</strong> /
+                <strong>15,162.78 BTC</strong>, Marketcap:
+                <strong>$3,903,615,877</strong> /
+                <strong>490,855 BTC</strong>
+                <br>
+                <img src="/coin_image/BTC.png" width="16" height="16" title="Bitcoin price" alt="Bitcoin price"> BTC price:
+                <strong>$7,985.06</strong>, DASH dominance:
+                <strong>71.65%</strong>,
+                <strong><a href="/masternodes-graph/" title="Masternode - Trends">Trends</a></strong>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="position:relative;top:-15px">
+        <div class="bs-component">
+            <div class="col-lg-6">
+                <h2><img src="/coin_image/XAP.png" height="32"> Apollon Coin (XAP)</h2>
+            </div>
+            <div class="col-lg-3" align="right">
+                <strong>Change coin:</strong>
+                <br>
+                <select id="change-coin" class="btn btn-default"> <option id="ZOC/">01 Coin (ZOC)</option> <option id="ABS/">Absolute (ABS)</option> <option id="ACCO/">Accolade (ACCO)</option> <option id="ADV/">Advance (ADV)</option> <option id="AGN/">Agena (AGN)</option> <option id="AKN/">Akencash (AKN)</option> <option id="ALP/">AlphaCoin (ALP)</option> <option id="XLQ/">ALQO (XLQ)</option> <option id="AMS/">AmsterdamCoin (AMS)</option> <option id="AND/">AndCoin (AND)</option> <option id="XAP/" selected>Apollon Coin (XAP)</option> <option id="ARC/">ArcticCoin (ARC)</option> <option id="ARGO/">ARGO (ARGO)</option> <option id="ARION/">ARION (ARION)</option> <option id="ARTX/">ARTAX (ARTX)</option> <option id="ASTR/">Astrum (ASTR)</option> <option id="BANQ/">BANQ (BANQ)</option> <option id="BASHC/">BashCoin (BASHC)</option> <option id="BEET/">Beetle Coin (BEET)</option> <option id="BBP/">BiblePay (BBP)</option> <option id="BTDX/">Bitcloud (BTDX)</option> <option id="BTCF/">Bitcoin Final (BTCF)</option> <option id="BITG/">Bitcoin Green (BITG)</option> <option id="BLTG/">Bitcoin Lightning (BLTG)</option> <option id="BHD/">Bithold (BHD)</option> <option id="BRO/">Bitradio (BRO)</option> <option id="BSD/">BitSend (BSD)</option> <option id="BLOCK/">Blocknet (BLOCK)</option> <option id="BOXY/">BoxyCoin (BOXY)</option> <option id="BUGO/">BU-GO (BUGO)</option> <option id="BWK/">Bulwark (BWK)</option> <option id="CAP/">Capital Coin (CAP)</option> <option id="CARAT/">CaratusCoin (CARAT)</option> <option id="CBS/">Cerberus (CBS)</option> <option id="CIV/">Civitas (CIV)</option> <option id="CTF/">Coin2Fly (CTF)</option> <option id="XCXT/">CoinonatX (XCXT)</option> <option id="COLX/">ColossusCoinXT (COLX)</option> <option id="XCPO/">COPICO (XCPO)</option> <option id="CRZ/">COREZ (CRZ)</option> <option id="CMOS/">CosmosCoin (CMOS)</option> <option id="CRAVE/">Crave NG (CRAVE)</option> <option id="CRM/">CREAM (CRM)</option> <option id="CRS/">Criptoreal (CRS)</option> <option id="CROP/">CropCoin (CROP)</option> <option id="CRC/">CrowdCoin (CRC)</option> <option id="CRW/">Crown (CRW)</option> <option id="CRW-SN/">Crown SN (CRW-SN)</option> <option id="CRU/">Curium (CRU)</option> <option id="CURV/">CurveCoin (CURV)</option> <option id="DASH/">Dash (DASH)</option> <option id="DNR/">Denarius (DNR)</option> <option id="DSR/">Desire (DSR)</option> <option id="DEV/">Deviant (DEV)</option> <option id="DMD/">Diamond (DMD)</option> <option id="DGM/">DigiMoney (DGM)</option> <option id="DP/">Digital Price (DP)</option> <option id="DIN/">Dinero (DIN)</option> <option id="DSC/">DiscountCoin (DSC)</option> <option id="DXC/">DIXIcoin (DXC)</option> <option id="ERZ/">EarnzCoin (ERZ)</option> <option id="ELP/">Ellerium Project (ELP)</option> <option id="END/">Endorphin (END)</option> <option id="ESCO/">Escrow (ESCO)</option> <option id="ENT/">Eternity (ENT)</option> <option id="ETHF/">Ethereum Future (ETHF)</option> <option id="EXCL/">ExclusiveCoin (EXCL)</option> <option id="EXUS/">EXUS Coin (EXUS)</option> <option id="FRM/">Ferrum Coin (FRM)</option> <option id="FXC/">Fexchange (FXC)</option> <option id="FLM/">FOLM (FLM)</option> <option id="XFT/">Footy Cash (XFT)</option> <option id="FOR/">Force (FOR)</option> <option id="FIX/">Fornix (FIX)</option> <option id="FSC/">FriendshipCoin (FSC)</option> <option id="GNR/">Gainer (GNR)</option> <option id="ORE/">Galactrum (ORE)</option> <option id="MRJA/">GanjaCoin (MRJA)</option> <option id="GIN/">GINCoin (GIN)</option> <option id="GOA/">GoaCoin (GOA)</option> <option id="GBX/">GoByte (GBX)</option> <option id="HC/">Harvest Coin (HC)</option> <option id="HXX/">HexxCoin (HXX)</option> <option id="HTK/">HiddenTalk (HTK)</option> <option id="CHC/">ChainCoin (CHC)</option> <option id="CHEESE/">CHEESE (CHEESE)</option> <option id="IC/">Ignition Coin (IC)</option> <option id="IFX/">Infinex (IFX)</option> <option id="INN/">Innova (INN)</option> <option id="INSN/">INSaNe (INSN)</option> <option id="ICH/">INSTACASH (ICH)</option> <option id="IMC/">Intermodal Coin (IMC)</option> <option id="ITZ/">Interzone (ITZ)</option> <option id="ION/">ION (ION)</option> <option id="JIYO/">JIYO (JIYO)</option> <option id="JLG/">Jolt Gas (JLG)</option> <option id="KORE/">Kore (KORE)</option> <option id="KC/">Kraken Coin (KC)</option> <option id="KREDS/">Kreds (KREDS)</option> <option id="KZC/">KZCash (KZC)</option> <option id="VGS/">Las Vegas Coin (VGS)</option> <option id="LGA/">League Coin (LGA)</option> <option id="LILI/">LILI Coin (LILI)</option> <option id="LIZ/">LIZUS (LIZ)</option> <option id="LUCKY/">LuckyBit (LUCKY)</option> <option id="LUNEX/">LUNEX (LUNEX)</option> <option id="LUX/">LUXCoin (LUX)</option> <option id="MDC/">MADCOIN (MDC)</option> <option id="MGN/">MagnaCoin (MGN)</option> <option id="MAG/">Magnet (MAG)</option> <option id="MMB/">MamboCoin (MMB)</option> <option id="MARCO/">MarbleCoin (MARCO)</option> <option id="MXT/">MarteX (MXT)</option> <option id="MTNC/">Masternodecoin (MTNC)</option> <option id="MEDIC/">MEDIC Coin (MEDIC)</option> <option id="MEME/">Memetic (MEME)</option> <option id="MUE/">MonetaryUnit (MUE)</option> <option id="MNB/">MoneyBag (MNB)</option> <option id="XMCC/">Monoeci (XMCC)</option> <option id="MIE/">MotileCoin (MIE)</option> <option id="MOUSE/">MOUSE (MOUSE)</option> <option id="MTI/">MTI Coin (MTI)</option> <option id="MUN/">MUNcoin (MUN)</option> <option id="NNC/">Nanucoin (NNC)</option> <option id="NEOS/">NeosCoin (NEOS)</option> <option id="NTRN/">Neutron (NTRN)</option> <option id="NIHL/">NihiloCoin (NIHL)</option> <option id="NORT/">Northern (NORT)</option> <option id="NMS/">Numus (NMS)</option> <option id="NYX/">NYXCOIN (NYX)</option> <option id="OLMP/">Olympic Coin (OLMP)</option> <option id="OMEGA/">OMEGA (OMEGA)</option> <option id="PAC/">PACcoin (PAC)</option> <option id="PNX/">Phantomx (PNX)</option> <option id="PHILS/">PhilsCurrency (PHILS)</option> <option id="PBS/">PHOBOS (PBS)</option> <option id="PHR/">PHORE (PHR)</option> <option id="PIVX/">PIVX (PIVX)</option> <option id="POLIS/">Polis (POLIS)</option> <option id="PHC/">ProfitHuntersCoin (PHC)</option> <option id="PROTON/">ProtonCoin (PROTON)</option> <option id="PRUFUS/">Prufus (PRUFUS)</option> <option id="PURA/">PURA (PURA)</option> <option id="PURE/">Pure (PURE)</option> <option id="PUSHI/">PUSHI Coin (PUSHI)</option> <option id="PYRO/">Pyro (PYRO)</option> <option id="QBIC/">QBIC (QBIC)</option> <option id="QUAZ/">QUAZ (QUAZ)</option> <option id="QDP/">QuDex Pay (QDP)</option> <option id="RACE/">RaceCoin (RACE)</option> <option id="RAP/">RAPTURE (RAP)</option> <option id="RNS/">RENOS (RNS)</option> <option id="ROE/">Rover Coin (ROE)</option> <option id="RUPX/">Rupaya (RUPX)</option> <option id="SAGA/">SagaCoin (SAGA)</option> <option id="SNCZ/">Sanchezium (SNCZ)</option> <option id="SAROS/">SAROS (SAROS)</option> <option id="SCORE/">SCORE (SCORE)</option> <option id="JEW/">Shekel (JEW)</option> <option id="SIB/">SIBCoin (SIB)</option> <option id="SPL/">Simplicity (SPL)</option> <option id="SMART/">SmartCash (SMART)</option> <option id="SEND/">Social Send (SEND)</option> <option id="XLR/">Solaris (XLR)</option> <option id="SPK/">SPARKS (SPK)</option> <option id="STAKE/">Stake (STAKE)</option> <option id="SNC/">Stannum Coin (SNC)</option> <option id="SPD/">Stipend (SPD)</option> <option id="STONE/">StoneCoin (STONE)</option> <option id="STAK/">STRAKS (STAK)</option> <option id="SUB1X/">SUB1X (SUB1X)</option> <option id="SUCR/">Sucre (SUCR)</option> <option id="SLC/">SuperLumic Coin (SLC)</option> <option id="TECAX/">Tec-AX (TECAX)</option> <option id="TRC/">Terracoin (TRC)</option> <option id="TIMEC/">TIMECoin (TIMEC)</option> <option id="TOK/">TokugawaCoin (TOK)</option> <option id="TX/">TransferCoin (TX)</option> <option id="TUN/">TUNE (TUN)</option> <option id="ULT/">ULTIMA (ULT)</option> <option id="VTAR/">Vantaur (VTAR)</option> <option id="VRT/">Virtus (VRT)</option> <option id="VIVO/">VIVO (VIVO)</option> <option id="VIZZ/">VIZZOTOP (VIZZ)</option> <option id="VSX/">Vsync (VSX)</option> <option id="XAR/">XaruCoin (XAR)</option> <option id="XEN/">XEON (XEN)</option> <option id="XMX/">Xuma (XMX)</option> <option id="YIC/">YICOIN (YIC)</option> <option id="YOBA/">YOBA Coin (YOBA)</option> <option id="ZACA/">ZacaCoin (ZACA)</option> <option id="ZLS/">Zalias (ZLS)</option> <option id="XZC/">Zcoin (XZC)</option> <option id="NZL/">Zealium Coin (NZL)</option> <option id="ZEX/">ZexCoin (ZEX)</option> <option id="ZOI/">ZOIN (ZOI)</option> </select>
+            </div>
+            <div class="col-lg-3" align="right">
+                <strong>Select base currency:</strong>
+                <br>
+                <select id="change-currency" class="btn btn-default"> <option id="USD" selected>US dollar (USD)</option> <option id="AUD">Australian dollar (AUD)</option> <option id="BGN">Bulgarian lev (BGN)</option> <option id="BRL">Brazilian real (BRL)</option> <option id="CAD">Canadian dollar (CAD)</option> <option id="CHF">Swiss franc (CHF)</option> <option id="CNY">Chinese yuan renminbi (CNY)</option> <option id="CZK">Czech koruna (CZK)</option> <option id="DKK">Danish krone (DKK)</option> <option id="EUR">Euro (EUR)</option> <option id="GBP">Pound sterling (GBP)</option> <option id="HKD">Hong Kong dollar (HKD)</option> <option id="HRK">Croatian kuna (HRK)</option> <option id="HUF">Hungarian forint (HUF)</option> <option id="IDR">Indonesian rupiah (IDR)</option> <option id="ILS">Israeli shekel (ILS)</option> <option id="INR">Indian rupee (INR)</option> <option id="JPY">Japanese yen (JPY)</option> <option id="KRW">South Korean won (KRW)</option> <option id="MXN">Mexican peso (MXN)</option> <option id="MYR">Malaysian ringgit (MYR)</option> <option id="NOK">Norwegian krone (NOK)</option> <option id="NZD">New Zealand dollar (NZD)</option> <option id="PHP">Philippine piso (PHP)</option> <option id="PLN">Polish zloty (PLN)</option> <option id="RON">Romanian leu (RON)</option> <option id="RUB">Russian rouble (RUB)</option> <option id="SEK">Swedish krona (SEK)</option> <option id="SGD">Singapore dollar (SGD)</option> <option id="THB">Thai baht (THB)</option> <option id="TRY">Turkish lira (TRY)</option> <option id="ZAR">South African rand (ZAR)</option> </select>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="position:relative;top:-15px">
+        <div class="bs-component">
+            <div class="col-lg-3">
+                <h2>Links</h2>
+                <div class="bs-component">
+                    <p><a href="https://bitcointalk.org/index.php?topic=3058895.0" target="_blank">Announcement</a><br> <a href="https://github.com/apollondeveloper/ApollonCoin/" target="_blank">Github</a><br> <a href="http://apolloncoin.io" target="_blank">Website</a><br> <br> <a href="https://discordapp.com/invite/t3ZwaSW" target="_blank">Discord</a><br> <a href="https://twitter.com/apolloncoin" target="_blank">Twitter</a><br><br> <a href="http://explorer.apolloncoin.io/" target="_blank">Explorer</a><br><br> Buy:<br> <a href="https://www.coinexchange.io/market/XAP/BTC" target="_blank">CoinExchange</a><br> <a href="https://graviex.net/markets/xapbtc" target="_blank">Graviex.net</a><br> <a href="https://wallet.crypto-bridge.org/market/BRIDGE.XAP_BRIDGE.BTC" target="_blank">CryptoBridge</a></p>
+                    <br>
+                    <p><strong><a href="https://cryptocompare.com/" target="_blank" title="CryptoCompare.com -  Live cryptocurrency prices, trades, volumes, forums, wallets, mining equipment and reviews">CryptoCompare.com - Live<br>cryptocurrency prices, trades<br>volumes, forums and reviews</a></strong></p>
+                    <br>
+                    <p><a href="/">Back to homepage</a></p>
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#masternode-stats" data-toggle="tab" aria-expanded="true">Masternodes stats</a></li>
+                    <li><a href="#masternode-map" data-toggle="tab" aria-expanded="false">Masternodes map</a></li>
+                    <li class="disabled"><a title="Team info not available for XAP">Team info</a></li>
+                </ul>
+                <div id="TabStats" class="tab-content">
+                    <div class="tab-pane fade active in" id="masternode-stats">
+                        <br>
+                        <div class="bs-component">
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    <div class="bs-component">
+                                        <div class="panel panel-warning">
+                                            <div class="panel-heading">
+                                                <h3 class="panel-title">Daily income</h3>
+                                            </div>
+                                            <div class="panel-body">
+                                                $104.9593
+                                                <br> 0.01321764 BTC
+                                                <br>
+                                                <strong><span class="text-success">971.171 XAP</span></strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="bs-component">
+                                        <div class="panel panel-success">
+                                            <div class="panel-heading">
+                                                <h3 class="panel-title">Weekly income</h3>
+                                            </div>
+                                            <div class="panel-body">
+                                                $734.7151
+                                                <br> 0.09252346 BTC
+                                                <br>
+                                                <strong><span class="text-success">6798.197 XAP</span></strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="bs-component">
+                                        <div class="panel panel-info">
+                                            <div class="panel-heading">
+                                                <h3 class="panel-title">Monthly income</h3>
+                                            </div>
+                                            <div class="panel-body">
+                                                $3,148.7792
+                                                <br> 0.39652912 BTC
+                                                <br>
+                                                <strong><span class="text-success">29135.13 XAP</span></strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="bs-component">
+                                        <div class="panel panel-danger">
+                                            <div class="panel-heading">
+                                                <h3 class="panel-title">Yearly income</h3>
+                                            </div>
+                                            <div class="panel-body">
+                                                $38,310.1466
+                                                <br> 4.82443762 BTC
+                                                <br>
+                                                <strong><span class="text-success">354477.415 XAP</span></strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div align="center">
+                            <a href="https://www.nyxcoin.org/?pk_campaign=mnonline#mndetails" title="NYX Coin | Invest into the Future" target="_blank"><img src="/banner/nyxcoin.png" style="max-width: 100%; height: auto;" alt="NYX Coin | Invest into the Future"></a>
+                        </div>
+                        <br>
+                        <br>
+                        <h3>XAP PRICE STATS</h3>
+                        <table class="table table-striped table-hover">
+                            <tbody>
+                            <tr>
+                                <td><strong>Price</strong></td>
+                                <td><strong>Volume</strong></td>
+                                <td><strong>Marketcap</strong></td>
+                                <td><strong>Change</strong></td>
+                            </tr>
+                            <tr>
+                                <td>$0.108075</td>
+                                <td>$6,300.74</td>
+                                <td>$3,701,785.00</td>
+                                <td><span class="text-success">3.42%</span></td>
+                            </tr>
+                            <tr>
+                                <td>0.00001361 BTC</td>
+                                <td>0.79 BTC</td>
+                                <td>466.17 BTC</td>
+                                <td></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <br>
+                        <h3>XAP MASTERNODE STATS</h3>
+                        <p>based on actual data over the past 24 hours</p>
+                        <table class="table table-striped table-hover">
+                            <tbody>
+                            <tr>
+                                <td>ROI (annual):</td>
+                                <td>1417.91% / 26 days</td>
+                            </tr>
+                            <tr>
+                                <td>Paid rewards for masternodes:</td>
+                                <td>751,686.3784 XAP</td>
+                            </tr>
+                            <tr>
+                                <td>AVG masternode reward frequency:</td>
+                                <td>11h 51m 43s</td>
+                            </tr>
+                            <tr>
+                                <td>Active masternodes:</td>
+                                <td>774</td>
+                            </tr>
+                            <tr>
+                                <td>Supply:</td>
+                                <td>34,252,050 XAP</td>
+                            </tr>
+                            <tr>
+                                <td>Coins locked:</td>
+                                <td>19,350,000 XAP (56.49%)</td>
+                            </tr>
+                            <tr>
+                                <td>Required coins for masternode:</td>
+                                <td>25,000 XAP</td>
+                            </tr>
+                            <tr>
+                                <td>Masternode worth:</td>
+                                <td>$2,701.88 / 0.34025 BTC</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <br>
+                        <h3>GRAPH</h3>
+                        <div style="height:400px;">
+                            <canvas id="canvas"></canvas>
+                        </div>
+                        <script language="JavaScript">
+                            var config = {
+                                type: 'line',
+                                data: {
+                                    labels: ["03-07-2018","03-08-2018","03-09-2018","03-10-2018","03-11-2018","03-12-2018","03-13-2018","03-14-2018","03-15-2018","03-16-2018","03-17-2018","03-18-2018","03-19-2018","03-20-2018","03-21-2018","03-22-2018","03-23-2018","03-24-2018","03-25-2018","03-26-2018","03-27-2018","03-28-2018"
+                                    ],
+                                    datasets: [{
+                                        label: "Masternodes",
+                                        fill: false,
+                                        hidden: true,
+                                        backgroundColor: "rgb(217, 83, 79)",
+                                        borderColor:  "rgb(217, 83, 79)",
+                                        data: ["114","144","182","220","262","307","341","402","434","448","474","515","532","564","587","609","645","655","675","715","740","774"],
+                                        fill: false,
+                                    }, {
+                                        label: "ROI [%]",
+                                        fill: false,
+                                        hidden: true,
+                                        backgroundColor: "rgb(50, 93, 136)",
+                                        borderColor: "rgb(50, 93, 136)",
+                                        data: ["10851.20","8159.04","6900.25","5648.92","4815.15","4154.62","3666.05","3067.05","2840.91","2781.34","2370.28","2117.40","2036.56","1948.35","1829.02","1776.76","1680.85","1380.21","1628.99","1520.21","1483.06","1420.63"],
+                                    }, {
+                                        label: "Price [USD]",
+                                        fill: false,
+                                        backgroundColor: "rgb(0, 179, 0)",
+                                        borderColor: "rgb(0, 179, 0)",
+                                        data: ["0.200404","0.213816","0.110939","0.170831","0.239741","0.235880","0.230719","0.306355","0.253290","0.151089","0.160422","0.196719","0.156385","0.141493","0.130605","0.113838","0.078873","0.081946","0.064279","0.104342","0.101794","0.107909"],
+                                    }, {
+                                        label: "Price [BTC]",
+                                        fill: false,
+                                        hidden: true,
+                                        backgroundColor: "rgb(204, 0, 0)",
+                                        borderColor: "rgb(204, 0, 0)",
+                                        data: [0.00002000,0.00002300,0.00001205,0.00001940,0.00002499,0.00002600,0.00002520,0.00003750,0.00003050,0.00001780,0.00001999,0.00002410,0.00001840,0.00001585,0.00001478,0.00001310,0.00000910,0.00000947,0.00000745,0.00001277,0.00001310,0.00001361],
+                                    }, {
+                                        label: "Daily [XAP]",
+                                        fill: false,
+                                        hidden: true,
+                                        backgroundColor: "rgb(255, 205, 86)",
+                                        borderColor: "rgb(255, 205, 86)",
+                                        data: ["7432.32870175","5588.38313634","4726.20016811","3869.12230814","3298.04667171","2845.63252586","2510.99548034","2100.71927868","1945.82791918","1905.02463907","1623.48112154","1450.27313287","1394.90518484","1334.48399766","1252.75609145","1216.95916658","1151.26587245","945.35138361","1115.74783755","1041.24061194","1015.79409320","973.03142428"],
+                                    }, {
+                                        label: "Monthly [XAP]",
+                                        fill: false,
+                                        hidden: true,
+                                        backgroundColor: "rgb(75, 192, 192)",
+                                        borderColor: "rgb(75, 192, 192)",
+                                        data: ["222969.86105250","167651.49409020","141786.00504330","116073.66924420","98941.40015130","85368.97577580","75329.86441020","63021.57836040","58374.83757540","57150.73917210","48704.43364620","43508.19398610","41847.15554520","40034.51992980","37582.68274350","36508.77499740","34537.97617350","28360.54150830","33472.43512650","31237.21835820","30473.82279600","29190.94272840"],
+                                    }, {
+                                        label: "Yearly [XAP]",
+                                        fill: false,
+                                        hidden: true,
+                                        backgroundColor: "rgb(153, 102, 255)",
+                                        borderColor: "rgb(153, 102, 255)",
+                                        data: ["2712799.97613875","2039759.84476410","1725063.06136015","1412229.64247110","1203787.03517415","1038655.87193890","916513.35032410","766762.53671820","710227.19050070","695333.99326055","592570.60936210","529349.69349755","509140.39246660","487086.65914590","457255.97337925","444190.09580170","420212.04344425","345053.25501765","407247.96070575","380052.82335810","370764.84401800","355156.46986220"],
+                                    }]
+                                },
+                                options: {
+                                    responsive: true,
+                                    maintainAspectRatio: false,
+                                    title:{
+                                        display:false,
+                                        text:''
+                                    },
+                                    tooltips: {
+                                        mode: 'index',
+                                        intersect: false,
+
+                                    },
+                                    hover: {
+                                        mode: 'nearest',
+                                        intersect: true
+                                    },
+                                    scales: {
+                                        xAxes: [{
+                                            display: true,
+                                            scaleLabel: {
+                                                display: false,
+                                                labelString: ''
+                                            }
+                                        }],
+                                        yAxes: [{
+                                            display: true,
+                                            scaleLabel: {
+                                                display: false,
+                                                labelString: ''
+                                            }
+                                        }]
+                                    }
+                                }
+                            };
+
+                            window.onload = function() {
+                                var ctx = document.getElementById("canvas").getContext("2d");
+                                window.myLine = new Chart(ctx, config);
+                            };
+                        </script>
+                        <br>
+                        <h3>XAP BLOCKCHAIN STATS</h3>
+                        <p>based on actual data over the past 24 hours</p>
+                        <table class="table table-striped table-hover">
+                            <tbody>
+                            <tr>
+                                <td>Blocks:</td>
+                                <td>1,566</td>
+                            </tr>
+                            <tr>
+                                <td>AVG block time:</td>
+                                <td>55s</td>
+                            </tr>
+                            <tr>
+                                <td>Genesis block:</td>
+                                <td>33d 11h 26m 5s ago / Feb 23 2018 12:47:51</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <br>
+                        <p>Last price and masternodes count update: 3m 7s ago<br> Last XAP block 43545 generated: 4s ago<br><br> ROI is calculated based on actual rewards for each block for the last 24 hours.</p>
+                        <br>
+                        <p><strong>MNO is a masternode coin monitoring and stats service. MNO does not research or recommend any coin. Do your own research and invest at your own risk.</strong></p>
+                        <p>ROI changes often and it not the most important factor. Please consider <strong>Dev Team - Community - PURPOSE/Platform - Liquidity - Wallet</strong> when making masternode purchases.</p>
+                    </div>
+                    <div class="tab-pane fade" id="masternode-map">
+                        <h2>Masternodes map</h2>
+                        <script>
+                            jQuery(document).ready(function () {
+                                jQuery('#vmap').vectorMap({
+                                    map: 'world_en',
+                                    backgroundColor: '#FFFFFF',
+                                    color: '#ffffff',
+                                    hoverOpacity: 0.6,
+                                    borderColor: 'black',
+                                    borderOpacity: 0.9,
+                                    borderWidth: 0.6,
+                                    hoverColor: 'orange',
+                                    selectedColor: 'orange',
+                                    enableZoom: true,
+                                    zoomOnScroll: true,
+                                    showTooltip: true,
+                                    scaleColors: ['#C8EEFF', '#006491'],
+                                    values: sample_data,
+                                    normalizeFunction: 'polynomial',
+                                    onLabelShow: function(event, label, code)
+                                    {
+                                        if (code == 'us'){label.text('United States: 343 masternodes');}else if (code == 'de'){label.text('Germany: 74 masternodes');}else if (code == 'nl'){label.text('Netherlands: 57 masternodes');}else if (code == 'fr'){label.text('France: 44 masternodes');}else if (code == 'jp'){label.text('Japan: 39 masternodes');}else if (code == 'bg'){label.text('Bulgaria: 31 masternodes');}else if (code == 'sg'){label.text('Singapore: 31 masternodes');}else if (code == 'gb'){label.text('United Kingdom: 30 masternodes');}else if (code == 'tr'){label.text('Turkey: 16 masternodes');}else if (code == 'ru'){label.text('Russia: 16 masternodes');}else if (code == ''){label.text('unknown: 14 masternodes');}else if (code == 'au'){label.text('Australia: 9 masternodes');}else if (code == 'lt'){label.text('Republic of Lithuania: 8 masternodes');}else if (code == 'cz'){label.text('Czechia: 8 masternodes');}else if (code == 'ca'){label.text('Canada: 8 masternodes');}else if (code == 'ro'){label.text('Romania: 7 masternodes');}else if (code == 'ua'){label.text('Ukraine: 6 masternodes');}else if (code == 'at'){label.text('Austria: 4 masternodes');}else if (code == 'it'){label.text('Italy: 4 masternodes');}else if (code == 'ch'){label.text('Switzerland: 4 masternodes');}else if (code == 'in'){label.text('India: 3 masternodes');}else if (code == 'my'){label.text('Malaysia: 3 masternodes');}else if (code == 'ie'){label.text('Ireland: 2 masternodes');}else if (code == 'pl'){label.text('Poland: 2 masternodes');}else if (code == 'dk'){label.text('Denmark: 1 masternodes');}else if (code == 'pa'){label.text('Panama: 1 masternodes');}else if (code == 'lv'){label.text('Latvia: 1 masternodes');}else if (code == 'es'){label.text('Spain: 1 masternodes');}else if (code == 'cn'){label.text('China: 1 masternodes');}				}
+                                });
+                            });
+                        </script>
+                        <div id="vmap" style="width: 800px; height: 600px;"></div>
+                        <br>
+                        <p><strong>MNO is a masternode coin monitoring and stats service. MNO does not research or recommend any coin. Do your own research and invest at your own risk.</strong></p>
+                        <p>ROI changes often and it not the most important factor. Please consider <strong>Dev Team - Community - PURPOSE/Platform - Liquidity - Wallet</strong> when making masternode purchases.</p>
+                    </div>
+                    <div class="tab-pane fade" id="team-info">
+                        <h2>Team info</h2>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <p><strong>MNO is a masternode coin monitoring and stats service. MNO does not research or recommend any coin. Do your own research and invest at your own risk.</strong></p>
+                        <p>ROI changes often and it not the most important factor. Please consider <strong>Dev Team - Community - PURPOSE/Platform - Liquidity - Wallet</strong> when making masternode purchases.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+        </div>
+    </div>
+    <footer>
+        <div class="row">
+            <div class="col-lg-12">
+                <hr>
+                <p>masternodes.online © 2017 - 2018 | Made with love in Panama | Contact us: <a href="/cdn-cgi/l/email-protection#91f2feffe5f0f2e5d1fcf0e2e5f4e3fffef5f4e2bffefffdf8fff4"><span class="__cf_email__" data-cfemail="5b3834352f3a382f1b363a282f3e2935343f3e287534353732353e">[email&nbsp;protected]</span></a> | Follow us on <a href="https://twitter.com/_mn_o_">Twitter</a> | <a href="https://campaigns.masternodes.online/" title="Listing &amp; Advertising with MNO" target="_blank">Listing &amp; Advertising with MNO</a></p>
+            </div>
+        </div>
+    </footer>
+</div>
+<script data-cfasync="false" src="/cdn-cgi/scripts/d07b1474/cloudflare-static/email-decode.min.js"></script>
+<script type="text/javascript" src="/js/change-coin.js?ver=1"></script>
+<!-- Generated in: 0.0167071819s -->
+</body>
+</html>

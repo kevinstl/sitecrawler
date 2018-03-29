@@ -20,6 +20,6 @@ public class MasternodesOnlineSupplementDocumentService {
 
         System.out.println("masterNodeList: " + masternodeList);
 
-        htmlMarshaller.masternodeRowsToMasternodeOnlineSupplements(masternodeList);
+//        htmlMarshaller.masternodeRowsToMasternodeOnlineSupplements(masternodeList);
     }
 }

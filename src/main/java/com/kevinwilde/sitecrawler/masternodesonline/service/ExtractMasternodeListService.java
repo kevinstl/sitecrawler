@@ -1,6 +1,6 @@
 package com.kevinwilde.sitecrawler.masternodesonline.service;
 
-import org.jsoup.HttpStatusException;
+import com.cryptocurrencyservices.masternodessuplement.api.client.master_node_online_supplement.model.MasternodesOnlineSupplement;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -30,39 +31,65 @@ public class ExtractMasternodeListService {
 //        System.out.println(masternodeHomeHtml);
         System.out.println(masternodeList);
 
-//        masternodeList.forEach(item->showPageLinkContent(item));
+//        masternodeList.forEach(item-> extractMasternodeProfile(item));
 
         return masternodeList;
     }
 
-    private void showPageLinkContent(Element masternodePageLink) {
+    public List<MasternodesOnlineSupplement> extractMasternodeProfilesToMasternodeOnlineSupplements(Elements masternodeTrs) {
 
-        System.out.println(masternodePageLink.text());
+
+
+        List<MasternodesOnlineSupplement> masternodesOnlineSupplements = new ArrayList<>();
+
+//        masternodeTrs.forEach(item-> masternodesOnlineSupplements.add(masternodeRowToMasternodeOnlineSupplementObject(item)));
+        masternodeTrs.forEach(item-> masternodesOnlineSupplements.add(extractMasternodeProfile(item)));
+//        masternodeTrs.forEach(item-> extractMasternodeProfile(item));
+
+        return masternodesOnlineSupplements;
+    }
+
+    public MasternodesOnlineSupplement extractMasternodeProfile(Element masternodeTr) {
+
+        Elements masternodePageLinks = masternodeTr.select("tr > td > strong > a");
+
+        System.out.println(masternodeTr.text());
 //        System.out.println(masternodePageLink.attr("href"));
 
         Document doc = null;
         try {
-            doc = Jsoup.connect("https://masternodes.online/" + masternodePageLink.attr("href")).get();
+            String profileHref = masternodePageLinks.attr("href");
+            doc = Jsoup.connect("https://masternodes.online/" + profileHref).get();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        List<Element> githubLinks = doc.select("a:contains(github)");
-        githubLinks.forEach(item->showGithubPageContent(item));
 
+        return new MasternodesOnlineSupplement();
     }
 
-    private void showGithubPageContent(Element githubPageLink){
-        Document doc = null;
-        try {
-            doc = Jsoup.connect(githubPageLink.attr("href")).get();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public String extractMasternodeGithubUrl(Document masternodeProfile){
+        Elements githubLinks = masternodeProfile.select("a:contains(github)");
+        String githubLink = githubLinks.get(0).attr("href");
+        return githubLink;
+    }
 
-        if(doc != null){
-            System.out.println(doc.select("li.commits > a > span").text());
-        }
+    public MasternodesOnlineSupplement extractMasternodeGithubContent(String masternodeGithubUrl){
+        Document masternodeGithubUrlDocument = documentFactory.getDocumentBasedOnUrl(masternodeGithubUrl);
 
+        String githubCommitsText = null;
+        Integer githubCommits = null;
+
+        MasternodesOnlineSupplement masternodesOnlineSupplement = new MasternodesOnlineSupplement();
+
+        if(masternodeGithubUrlDocument != null){
+            githubCommitsText = masternodeGithubUrlDocument.select("li.commits > a > span").text();
+            System.out.println(githubCommits);
+        }
+        if(githubCommitsText != null){
+            githubCommits = new Integer(githubCommitsText);
+            masternodesOnlineSupplement.setGithubCommits(githubCommits);
+        }
+        return masternodesOnlineSupplement;
     }
 }
