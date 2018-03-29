@@ -1,6 +1,6 @@
 package com.kevinwilde.sitecrawler.masternodesonline.config;
 
-import com.kevinwilde.sitecrawler.masternodesonline.service.ExtractMasternodeListService;
+import com.kevinwilde.sitecrawler.masternodesonline.service.MasternodeListService;
 import com.kevinwilde.sitecrawler.masternodesonline.service.MasternodesOnlineSupplementDocumentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
@@ -13,7 +13,7 @@ import java.io.IOException;
 public class MasternodesOnlineConfig {
 
     @Autowired
-    private ExtractMasternodeListService extractMasternodeListService;
+    private MasternodeListService masternodeListService;
 
     @Autowired
     private MasternodesOnlineSupplementDocumentService masternodesOnlineSupplementDocumentService;

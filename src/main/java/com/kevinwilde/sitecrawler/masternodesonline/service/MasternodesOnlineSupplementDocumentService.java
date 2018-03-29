@@ -1,24 +1,25 @@
 package com.kevinwilde.sitecrawler.masternodesonline.service;
 
-import org.jsoup.select.Elements;
+import com.cryptocurrencyservices.masternodessuplement.api.client.master_node_online_supplement.model.MasternodesOnlineSupplement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.util.List;
 
 @Component
 public class MasternodesOnlineSupplementDocumentService {
 
     @Autowired
-    private ExtractMasternodeListService extractMasternodeListService;
+    private MasternodeListService masternodeListService;
 
     @Autowired
-    private HtmlMarshaller htmlMarshaller;
+    private MasternodeRowService masternodeRowService;
 
     public void populate() throws IOException {
-        Elements masternodeList = extractMasternodeListService.extractMasternodeList();
+        List<MasternodesOnlineSupplement> masternodesOnlineSupplements = masternodeListService.extractMasternodeProfilesToMasternodeOnlineSupplements();
 
-        System.out.println("masterNodeList: " + masternodeList);
+        System.out.println("masternodesOnlineSupplements: " + masternodesOnlineSupplements);
 
 //        htmlMarshaller.masternodeRowsToMasternodeOnlineSupplements(masternodeList);
     }

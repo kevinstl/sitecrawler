@@ -1,24 +1,29 @@
 package com.kevinwilde.sitecrawler.masternodesonline.service;
 
 import com.cryptocurrencyservices.masternodessuplement.api.client.master_node_online_supplement.model.MasternodesOnlineSupplement;
+import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Component
-public class HtmlMarshaller {
+public class MasternodeRowService {
 
+    @Autowired
+    private MasternodeProfileService masternodeProfileService;
 
-    public MasternodesOnlineSupplement masternodeRowToMasternodeOnlineSupplementObject(Element element) {
+    @Autowired
+    private MasternodeOnlineSupplementFactory masternodeOnlineSupplementFactory;
 
-        Elements tds = element.select("tr > td");
+    public MasternodesOnlineSupplement masternodeRowToMasternodeOnlineSupplementObject(Element masternodeTr) {
+
+        Elements tds = masternodeTr.select("tr > td");
 
         System.out.println(tds);
 
-        MasternodesOnlineSupplement masternodesOnlineSupplement = new MasternodesOnlineSupplement();
+//        MasternodesOnlineSupplement masternodesOnlineSupplement = new MasternodesOnlineSupplement();
+        MasternodesOnlineSupplement masternodesOnlineSupplement = masternodeOnlineSupplementFactory.build();
 
         masternodesOnlineSupplement.setCoin(tds.get(2).text());
         masternodesOnlineSupplement.setPrice(tds.get(3).text());
@@ -30,8 +35,15 @@ public class HtmlMarshaller {
         masternodesOnlineSupplement.setNumberRequired(tds.get(9).text());
         masternodesOnlineSupplement.setMinimumWorth(tds.get(10).text());
 
+        String masternodeProfileUrl = masternodeProfileService.extractMasternodeProfileUrl(masternodeTr);
+        masternodesOnlineSupplement = masternodeProfileService.extractMasternodeProfileContent(masternodesOnlineSupplement, masternodeProfileUrl);
+
+
         return masternodesOnlineSupplement;
     }
+
+
+
 
 
 }
