@@ -19,7 +19,7 @@ public class MasternodesOnlineSupplementDocumentService {
     public void populate() throws IOException {
         List<MasternodesOnlineSupplement> masternodesOnlineSupplements = masternodeListService.extractMasternodeProfilesToMasternodeOnlineSupplements();
 
-        System.out.println("masternodesOnlineSupplements: " + masternodesOnlineSupplements);
+//        System.out.println("masternodesOnlineSupplements: " + masternodesOnlineSupplements);
 
 //        htmlMarshaller.masternodeRowsToMasternodeOnlineSupplements(masternodeList);
     }

@@ -100,7 +100,7 @@ public class MasternodeRowServiceTest {
 
         masternodesOnlineSupplement = classUnderTest.masternodeRowToMasternodeOnlineSupplementObject(masternodeTr);
 
-        System.out.println(masternodesOnlineSupplement);
+//        System.out.println(masternodesOnlineSupplement);
 
 
         assertNotNull(masternodesOnlineSupplement);

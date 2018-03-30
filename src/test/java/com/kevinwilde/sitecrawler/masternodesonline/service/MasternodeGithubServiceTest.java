@@ -1,5 +1,6 @@
 package com.kevinwilde.sitecrawler.masternodesonline.service;
 
+import com.cryptocurrencyservices.masternodessuplement.api.client.master_node_online_supplement.api.MasternodesOnlineSupplementApiClient;
 import com.cryptocurrencyservices.masternodessuplement.api.client.master_node_online_supplement.model.MasternodesOnlineSupplement;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
@@ -32,6 +33,9 @@ public class MasternodeGithubServiceTest {
 
     @Mock
     private DocumentFactory documentFactory;
+
+    @Mock
+    private MasternodesOnlineSupplementApiClient masternodesOnlineSupplementApiClient;
 
     private VelocityEngine velocityEngine = new VelocityEngine();
     private VelocityContext velocityContext = new VelocityContext();
@@ -122,6 +126,8 @@ public class MasternodeGithubServiceTest {
         assertNotNull(masternodesOnlineSupplement.getGithubCommits());
         Integer expectedGithubCommits = 5;
         assertEquals(expectedGithubCommits, masternodesOnlineSupplement.getGithubCommits());
+
+        verify(masternodesOnlineSupplementApiClient).createMasternodesOnlineSupplementUsingPOST(masternodesOnlineSupplement);
     }
 
 

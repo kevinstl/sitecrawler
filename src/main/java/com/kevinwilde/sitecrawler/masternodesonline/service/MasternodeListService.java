@@ -21,10 +21,6 @@ public class MasternodeListService {
     @Autowired
     private MasternodeRowService masternodeRowService;
 
-    public void hello(){
-        System.out.println("hello");
-    }
-
 
     public List<MasternodesOnlineSupplement> extractMasternodeProfilesToMasternodeOnlineSupplements() {
 
