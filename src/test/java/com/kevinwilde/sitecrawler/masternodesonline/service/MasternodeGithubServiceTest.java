@@ -2,6 +2,7 @@ package com.kevinwilde.sitecrawler.masternodesonline.service;
 
 import com.cryptocurrencyservices.masternodessuplement.api.client.master_node_online_supplement.api.MasternodesOnlineSupplementApiClient;
 import com.cryptocurrencyservices.masternodessuplement.api.client.master_node_online_supplement.model.MasternodesOnlineSupplement;
+import com.kevinwilde.graphqljavaclient.Caller;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
@@ -127,8 +128,9 @@ public class MasternodeGithubServiceTest {
         Integer expectedGithubCommits = 5;
         assertEquals(expectedGithubCommits, masternodesOnlineSupplement.getGithubCommits());
 
-        verify(masternodesOnlineSupplementApiClient).createMasternodesOnlineSupplementUsingPOST(masternodesOnlineSupplement);
+        verify(masternodesOnlineSupplementApiClient).createMasternodesOnlineSupplementUsingPOST("", masternodesOnlineSupplement);
     }
+
 
 
 }
