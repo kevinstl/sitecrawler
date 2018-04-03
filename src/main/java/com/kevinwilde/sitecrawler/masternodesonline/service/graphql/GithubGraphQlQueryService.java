@@ -1,7 +1,8 @@
 package com.kevinwilde.sitecrawler.masternodesonline.service.graphql;
 
 
-import com.kevinwilde.graphqljavaclient.Caller;
+import com.kevinwilde.graphqljavaclient.GraphQlClient;
+import com.kevinwilde.sitecrawler.masternodesonline.domain.GithubInfoResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
@@ -25,7 +26,7 @@ import java.io.UnsupportedEncodingException;
 public class GithubGraphQlQueryService {
 
     @Autowired
-    private Caller caller;
+    private GraphQlClient caller;
 
 //    public static void main(String[] args) throws JSONException {
 ////        callingGraph();
@@ -49,8 +50,12 @@ public class GithubGraphQlQueryService {
 
 
     public Integer retrieveMasternodeGithubTotalCommits(String repositoryOwner, String repositoryName) {
-        String response =
-                caller.execute("https://api.github.com/graphql", query);
+
+//        String response =
+//                caller.execute("https://api.github.com/graphql", query, String.class);
+
+        GithubInfoResponse response =
+                caller.execute("https://api.github.com/graphql", query, GithubInfoResponse.class);
 
         System.out.println("retrieveMasternodeGithubTotalCommits: response: " + response);
         return null;
