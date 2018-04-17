@@ -1,6 +1,8 @@
 package com.kevinwilde.sitecrawler.masternodesonline.service;
 
+import com.cryptocurrencyservices.masternodessuplement.api.client.master_node_online_supplement.api.MasternodesOnlineSupplementApiClient;
 import com.cryptocurrencyservices.masternodessuplement.api.client.master_node_online_supplement.model.MasternodesOnlineSupplement;
+import com.kevinwilde.sitecrawler.masternodesonline.factory.BearerTokenFactory;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
@@ -40,12 +42,19 @@ public class MasternodeRowServiceTest {
     private VelocityContext velocityContext = new VelocityContext();
     private StringWriter stringWriter = new StringWriter();
     private Properties properties = new Properties();
+    private String bearerToken = "bearerToken";
 
     @Mock
     private MasternodesOnlineSupplement masternodesOnlineSupplement;
 
     @Mock
     private MasternodeOnlineSupplementFactory masternodeOnlineSupplementFactory;
+
+    @Mock
+    private MasternodesOnlineSupplementApiClient masternodesOnlineSupplementApiClient;
+
+    @Mock
+    private BearerTokenFactory bearerTokenFactory;
 
     @Before
     public void setup(){
@@ -98,6 +107,8 @@ public class MasternodeRowServiceTest {
         when(masternodeProfileService.extractMasternodeProfileContent(any(MasternodesOnlineSupplement.class), eq(HTTPS_MASTERNODES_ONLINE_CURRENCIES_XAP)))
             .thenReturn(masternodesOnlineSupplement);
 
+        when(bearerTokenFactory.build()).thenReturn(bearerToken);
+
         masternodesOnlineSupplement = classUnderTest.masternodeRowToMasternodeOnlineSupplementObject(masternodeTr);
 
 //        System.out.println(masternodesOnlineSupplement);
@@ -129,6 +140,9 @@ public class MasternodeRowServiceTest {
 
         verify(masternodeProfileService).extractMasternodeProfileUrl(masternodeTr);
         verify(masternodeProfileService).extractMasternodeProfileContent(any(MasternodesOnlineSupplement.class), eq(HTTPS_MASTERNODES_ONLINE_CURRENCIES_XAP));
+
+
+        verify(masternodesOnlineSupplementApiClient).createMasternodesOnlineSupplementUsingPOST(bearerToken, masternodesOnlineSupplement);
 
 
     }

@@ -1,6 +1,7 @@
 package com.kevinwilde.sitecrawler.masternodesonline.service;
 
 import com.cryptocurrencyservices.masternodessuplement.api.client.master_node_online_supplement.model.MasternodesOnlineSupplement;
+import com.kevinwilde.sitecrawler.masternodesonline.factory.DocumentFactory;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
@@ -82,11 +83,11 @@ public class MasternodeProfileServiceTest {
 
         MasternodesOnlineSupplement existingMasternodesOnlineSupplement = new MasternodesOnlineSupplement();
 
-        Document masternodeProfileXapDocument = buildMasternodeProfile();
+        Document masternodeProfile = buildMasternodeProfile();
 
-        when(documentFactory.getDocumentBasedOnUrl(HTTPS_MASTERNODES_ONLINE_CURRENCIES_XAP)).thenReturn(masternodeProfileXapDocument);
-        when(masternodeGithubService.extractMasternodeGithubUrl(masternodeProfileXapDocument)).thenReturn(HTTPS_GITHUB_COM_APOLLONDEVELOPER_APOLLON_COIN);
-        when(masternodeGithubService.extractMasternodeGithubContent(existingMasternodesOnlineSupplement, HTTPS_GITHUB_COM_APOLLONDEVELOPER_APOLLON_COIN))
+        when(documentFactory.getDocumentBasedOnUrl(HTTPS_MASTERNODES_ONLINE_CURRENCIES_XAP)).thenReturn(masternodeProfile);
+        when(masternodeGithubService.extractMasternodeGithubUrl(masternodeProfile)).thenReturn(HTTPS_GITHUB_COM_APOLLONDEVELOPER_APOLLON_COIN);
+        when(masternodeGithubService.extractMasternodeGithubContent(masternodeProfile, existingMasternodesOnlineSupplement))
                 .thenReturn(existingMasternodesOnlineSupplement);
 
 
@@ -98,7 +99,7 @@ public class MasternodeProfileServiceTest {
         assertNotNull(updatedMasternodesOnlineSupplement);
         assertEquals(existingMasternodesOnlineSupplement, updatedMasternodesOnlineSupplement);
 
-        verify(masternodeGithubService).extractMasternodeGithubContent(existingMasternodesOnlineSupplement, HTTPS_GITHUB_COM_APOLLONDEVELOPER_APOLLON_COIN);
+        verify(masternodeGithubService).extractMasternodeGithubContent(masternodeProfile, existingMasternodesOnlineSupplement);
 
     }
 

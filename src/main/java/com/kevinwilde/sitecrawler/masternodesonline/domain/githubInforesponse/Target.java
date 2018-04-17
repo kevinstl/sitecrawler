@@ -1,5 +1,5 @@
 
-package com.kevinwilde.sitecrawler.masternodesonline.domain;
+package com.kevinwilde.sitecrawler.masternodesonline.domain.githubInforesponse;
 
 import java.util.HashMap;
 import java.util.Map;

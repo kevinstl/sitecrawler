@@ -2,7 +2,9 @@ package com.kevinwilde.sitecrawler.masternodesonline.service;
 
 import com.cryptocurrencyservices.masternodessuplement.api.client.master_node_online_supplement.api.MasternodesOnlineSupplementApiClient;
 import com.cryptocurrencyservices.masternodessuplement.api.client.master_node_online_supplement.model.MasternodesOnlineSupplement;
-import com.kevinwilde.graphqljavaclient.Caller;
+import com.kevinwilde.sitecrawler.masternodesonline.domain.GithubInfo;
+import com.kevinwilde.sitecrawler.masternodesonline.factory.DocumentFactory;
+import com.kevinwilde.sitecrawler.masternodesonline.service.graphql.GithubGraphQlQueryService;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
@@ -21,7 +23,6 @@ import java.util.Properties;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -53,37 +54,12 @@ public class MasternodeGithubServiceTest {
     @InjectMocks
     private MasternodeGithubService classUnderTest;
 
-    private String masternodeTableRowXap =
-            "<tr> \n" +
-            " <td class=\"control\" style=\"width:1px\"></td> \n" +
-            " <td style=\"width:4px;\"><img src=\"coin_image/XAP.png?v=1\" height=\"16\" title=\"Apollon Coin masternode\" alt=\"Apollon Coin masternode\">&nbsp;&nbsp;&nbsp;</td> \n" +
-            " <td style=\"width:100px\"><strong><a href=\"/currencies/XAP/\" title=\"Apollon Coin masternode detailed stats\">Apollon Coin (XAP)</a></strong></td> \n" +
-            " <td style=\"width:145px\"><span title=\"0.103719\"></span>$0.1037</td> \n" +
-            " <td style=\"width:70px\"><span class=\"text-danger\">-99.97 %</span></td> \n" +
-            " <td style=\"width:120px\"><span title=\"3128.43\"></span>$3,128</td> \n" +
-            " <td style=\"width:130px\"><span title=\"3452271\"></span>$3,452,271</td> \n" +
-            " <td style=\"width:100px\"><strong><span title=\"1491.00\" class=\"text-info\">1491.00%</span></strong></td> \n" +
-            " <td style=\"width:80px\"><span title=\"737\"></span>737</td> \n" +
-            " <td style=\"width:100px\"><span title=\"25000\">25,000</span></td> \n" +
-            " <td style=\"width:100px\"><span title=\"2592.975\"></span>$2,593</td> \n" +
-            "</tr>";
+    @Mock
+    private GithubGraphQlQueryService githubGraphQlQueryService;
 
-    private String masternodeTableRowFrm =
-            "<tr> \n"+
-            " <td class=\"control\" style=\"width:1px\"></td> \n"+
-            " <td style=\"width:4px;\"><img src=\"coin_image/FRM.png?v=1\" height=\"16\" title=\"Ferrum Coin masternode\" alt=\"Ferrum Coin masternode\">&nbsp;&nbsp;&nbsp;</td> \n"+
-            " <td style=\"width:100px\"><strong><a href=\"/currencies/FRM/\" title=\"Ferrum Coin masternode detailed stats\">Ferrum Coin (FRM)</a></strong></td> \n"+
-            " <td style=\"width:145px\"><span title=\"0.082955\"></span>$0.0830</td> \n"+
-            " <td style=\"width:70px\"><span class=\"text-success\">159.02 %</span></td> \n"+
-            " <td style=\"width:120px\"><span title=\"1947.96\"></span>$1,948</td> \n"+
-            " <td style=\"width:130px\"><span title=\"105572\"></span>$105,572</td> \n"+
-            " <td style=\"width:100px\"><strong><span title=\"965.26\" class=\"text-info\">965.26%</span></strong></td> \n"+
-            " <td style=\"width:80px\"><span title=\"211\"></span>211</td> \n"+
-            " <td style=\"width:100px\"><span title=\"2500\">2,500</span></td> \n"+
-            " <td style=\"width:100px\"><span title=\"207.3875\"></span>$207</td> \n"+
-            "</tr>";
-
-
+    private String expectedRepositoryOwner = "apollondeveloper";
+    private String expectedRepositoryName = "ApollonCoin";
+    private Integer expectedTotalCommits = Integer.valueOf(5);
 
     @Test
     public void extractMasternodeGithubLink_extractsMasternodeGithubLink() {
@@ -94,6 +70,23 @@ public class MasternodeGithubServiceTest {
 
         assertNotNull(masternodeGithubLink);
         assertEquals(HTTPS_GITHUB_COM_APOLLONDEVELOPER_APOLLON_COIN, masternodeGithubLink);
+    }
+
+    @Test
+    public void extractMasternodeGithubInfo_extractsMasternodeGithubInfo(){
+        Document masternodeProfileXapDocument = buildMasternodeProfile();
+
+        GithubInfo githubInfo = classUnderTest.extractMasternodeGithubInfo(masternodeProfileXapDocument);
+
+        //https://github.com/apollondeveloper/ApollonCoin/
+
+        assertNotNull(githubInfo);
+        assertNotNull(githubInfo.getRepositoryOwner());
+
+        assertEquals(expectedRepositoryOwner, githubInfo.getRepositoryOwner());
+        assertNotNull(githubInfo.getRepositoryName());
+
+        assertEquals(expectedRepositoryName, githubInfo.getRepositoryName());
     }
 
     private Document buildMasternodeProfile() {
@@ -108,27 +101,29 @@ public class MasternodeGithubServiceTest {
     @Test
     public void extractMasternodeGithubContent_extractsMasternodeGithubContent() {
 
+        Document masternodeProfile = buildMasternodeProfile();
+
         MasternodesOnlineSupplement existingMasternodesOnlineSupplement = new MasternodesOnlineSupplement();
 
-        Template masternodeProfileXapTemplate = velocityEngine.getTemplate("templates/masternodeGithubContentXap.vm");
 
-        masternodeProfileXapTemplate.merge( velocityContext, stringWriter );
-        String masternodeGithubContentXapHtml = stringWriter.toString();
-        Document masternodeProfileXapDocument = Jsoup.parse(masternodeGithubContentXapHtml, "", Parser.xmlParser());
 
-        when(documentFactory.getDocumentBasedOnUrl(anyString())).thenReturn(masternodeProfileXapDocument);
+        when(githubGraphQlQueryService.
+                retrieveMasternodeGithubTotalCommits(expectedRepositoryOwner, expectedRepositoryName)).
+                thenReturn(expectedTotalCommits);
 
 
         MasternodesOnlineSupplement masternodesOnlineSupplement =
-                classUnderTest.extractMasternodeGithubContent(existingMasternodesOnlineSupplement, HTTPS_GITHUB_COM_APOLLONDEVELOPER_APOLLON_COIN);
+                classUnderTest.extractMasternodeGithubContent(
+                        masternodeProfile,
+                        existingMasternodesOnlineSupplement
+                );
 
 
         assertNotNull(masternodesOnlineSupplement);
         assertNotNull(masternodesOnlineSupplement.getGithubCommits());
-        Integer expectedGithubCommits = 5;
-        assertEquals(expectedGithubCommits, masternodesOnlineSupplement.getGithubCommits());
+        assertEquals(expectedTotalCommits, masternodesOnlineSupplement.getGithubCommits());
 
-        verify(masternodesOnlineSupplementApiClient).createMasternodesOnlineSupplementUsingPOST("", masternodesOnlineSupplement);
+//        verify(masternodesOnlineSupplementApiClient).createMasternodesOnlineSupplementUsingPOST("", masternodesOnlineSupplement);
     }
 
 

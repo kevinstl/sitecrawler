@@ -1,6 +1,7 @@
 package com.kevinwilde.sitecrawler.masternodesonline.service;
 
 import com.cryptocurrencyservices.masternodessuplement.api.client.master_node_online_supplement.model.MasternodesOnlineSupplement;
+import com.kevinwilde.sitecrawler.masternodesonline.factory.DocumentFactory;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;

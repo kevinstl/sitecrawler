@@ -1,4 +1,4 @@
-package com.kevinwilde.sitecrawler.masternodesonline.service;
+package com.kevinwilde.sitecrawler.masternodesonline.factory;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;

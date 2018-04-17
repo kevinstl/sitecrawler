@@ -1,20 +1,20 @@
 
-package com.kevinwilde.sitecrawler.masternodesonline.domain;
+package com.kevinwilde.sitecrawler.masternodesonline.domain.githubInforesponse;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class Repository {
+public class Data {
 
-    private DefaultBranchRef defaultBranchRef;
+    private Repository repository;
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    public DefaultBranchRef getDefaultBranchRef() {
-        return defaultBranchRef;
+    public Repository getRepository() {
+        return repository;
     }
 
-    public void setDefaultBranchRef(DefaultBranchRef defaultBranchRef) {
-        this.defaultBranchRef = defaultBranchRef;
+    public void setRepository(Repository repository) {
+        this.repository = repository;
     }
 
     public Map<String, Object> getAdditionalProperties() {

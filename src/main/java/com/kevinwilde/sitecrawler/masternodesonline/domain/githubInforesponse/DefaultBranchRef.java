@@ -1,20 +1,20 @@
 
-package com.kevinwilde.sitecrawler.masternodesonline.domain;
+package com.kevinwilde.sitecrawler.masternodesonline.domain.githubInforesponse;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class History {
+public class DefaultBranchRef {
 
-    private Integer totalCount;
+    private Target target;
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    public Integer getTotalCount() {
-        return totalCount;
+    public Target getTarget() {
+        return target;
     }
 
-    public void setTotalCount(Integer totalCount) {
-        this.totalCount = totalCount;
+    public void setTarget(Target target) {
+        this.target = target;
     }
 
     public Map<String, Object> getAdditionalProperties() {

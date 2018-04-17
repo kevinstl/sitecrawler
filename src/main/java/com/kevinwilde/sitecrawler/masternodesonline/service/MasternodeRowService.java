@@ -1,6 +1,8 @@
 package com.kevinwilde.sitecrawler.masternodesonline.service;
 
+import com.cryptocurrencyservices.masternodessuplement.api.client.master_node_online_supplement.api.MasternodesOnlineSupplementApiClient;
 import com.cryptocurrencyservices.masternodessuplement.api.client.master_node_online_supplement.model.MasternodesOnlineSupplement;
+import com.kevinwilde.sitecrawler.masternodesonline.factory.BearerTokenFactory;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -15,6 +17,12 @@ public class MasternodeRowService {
 
     @Autowired
     private MasternodeOnlineSupplementFactory masternodeOnlineSupplementFactory;
+
+    @Autowired
+    private MasternodesOnlineSupplementApiClient masternodesOnlineSupplementApiClient;
+
+    @Autowired
+    private BearerTokenFactory bearerTokenFactory;
 
     public MasternodesOnlineSupplement masternodeRowToMasternodeOnlineSupplementObject(Element masternodeTr) {
 
@@ -37,6 +45,11 @@ public class MasternodeRowService {
 
         String masternodeProfileUrl = masternodeProfileService.extractMasternodeProfileUrl(masternodeTr);
         masternodesOnlineSupplement = masternodeProfileService.extractMasternodeProfileContent(masternodesOnlineSupplement, masternodeProfileUrl);
+
+//        String bearerToken = System.getenv("BEARER_TOKEN");
+        String bearerToken = bearerTokenFactory.build();
+        masternodesOnlineSupplementApiClient.
+                createMasternodesOnlineSupplementUsingPOST(bearerToken, masternodesOnlineSupplement);
 
 
         return masternodesOnlineSupplement;

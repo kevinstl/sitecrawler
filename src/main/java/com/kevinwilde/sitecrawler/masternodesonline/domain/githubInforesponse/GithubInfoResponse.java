@@ -1,20 +1,20 @@
 
-package com.kevinwilde.sitecrawler.masternodesonline.domain;
+package com.kevinwilde.sitecrawler.masternodesonline.domain.githubInforesponse;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class Data {
+public class GithubInfoResponse {
 
-    private Repository repository;
+    private Data data;
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    public Repository getRepository() {
-        return repository;
+    public Data getData() {
+        return data;
     }
 
-    public void setRepository(Repository repository) {
-        this.repository = repository;
+    public void setData(Data data) {
+        this.data = data;
     }
 
     public Map<String, Object> getAdditionalProperties() {
