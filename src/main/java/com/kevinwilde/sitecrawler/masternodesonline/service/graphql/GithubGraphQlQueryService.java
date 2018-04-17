@@ -28,7 +28,17 @@ public class GithubGraphQlQueryService {
                         GithubInfoResponse.class);
 
         System.out.println("retrieveMasternodeGithubTotalCommits: response: " + response);
-        return response.getData().getRepository().getDefaultBranchRef().getTarget().getHistory().getTotalCount();
+
+        Integer totalCount = null;
+
+        try{
+            totalCount = response.getData().getRepository().getDefaultBranchRef().getTarget().getHistory().getTotalCount();
+        }
+        catch(NullPointerException e){
+//            e.printStackTrace();
+        }
+
+        return totalCount;
     }
 
 }

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 public class BearerTokenFactory {
 
     public String build(){
-        return System.getenv("BEARER_TOKEN");
+        return "Bearer " + System.getenv("BEARER_TOKEN");
     }
 
 }

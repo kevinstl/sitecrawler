@@ -47,7 +47,9 @@ public class MasternodeGithubService {
         int beginIndexRepositoryName = endIndexRepositoryOwner + 1;
         int endIndexRepositoryName = masternodeGithubUrl.indexOf("/", beginIndexRepositoryName);
 
-        String repositoryName = masternodeGithubUrl.substring(beginIndexRepositoryName, endIndexRepositoryName);
+//        String repositoryName = masternodeGithubUrl.substring(beginIndexRepositoryName, endIndexRepositoryName);
+        String repositoryName = masternodeGithubUrl.substring(beginIndexRepositoryName);
+        repositoryName = repositoryName.replace("/", "");
 
         GithubInfo githubInfo = new GithubInfo();
         githubInfo.setRepositoryOwner(repositoryOwner);

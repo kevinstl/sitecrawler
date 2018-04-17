@@ -2,6 +2,7 @@ package com.kevinwilde.sitecrawler.masternodesonline.service;
 
 import com.cryptocurrencyservices.masternodessuplement.api.client.master_node_online_supplement.model.MasternodesOnlineSupplement;
 import com.kevinwilde.sitecrawler.masternodesonline.factory.DocumentFactory;
+import org.apache.commons.lang3.StringUtils;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -32,9 +33,11 @@ public class MasternodeProfileService {
         Document masternodeProfileContentDocument = documentFactory.getDocumentBasedOnUrl(masternodeProfileUrl);
 
         String masternodeGithubUrl = masternodeGithubService.extractMasternodeGithubUrl(masternodeProfileContentDocument);
-        masternodesOnlineSupplement.setGithubUrl(masternodeGithubUrl);
 
-        masternodesOnlineSupplement = masternodeGithubService.extractMasternodeGithubContent(masternodeProfileContentDocument, masternodesOnlineSupplement);
+        if(StringUtils.isNotBlank(masternodeGithubUrl)){
+            masternodesOnlineSupplement.setGithubUrl(masternodeGithubUrl);
+            masternodesOnlineSupplement = masternodeGithubService.extractMasternodeGithubContent(masternodeProfileContentDocument, masternodesOnlineSupplement);
+        }
 
         return masternodesOnlineSupplement;
     }

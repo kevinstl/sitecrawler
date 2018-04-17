@@ -21,6 +21,7 @@ import java.util.Properties;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -100,7 +101,28 @@ public class MasternodeProfileServiceTest {
         assertEquals(existingMasternodesOnlineSupplement, updatedMasternodesOnlineSupplement);
 
         verify(masternodeGithubService).extractMasternodeGithubContent(masternodeProfile, existingMasternodesOnlineSupplement);
+    }
 
+    @Test
+    public void extractMasternodeProfileContent_handlesNullGithubUrl(){
+
+        MasternodesOnlineSupplement existingMasternodesOnlineSupplement = new MasternodesOnlineSupplement();
+
+        Document masternodeProfile = buildMasternodeProfile();
+
+        when(documentFactory.getDocumentBasedOnUrl(HTTPS_MASTERNODES_ONLINE_CURRENCIES_XAP)).thenReturn(masternodeProfile);
+        when(masternodeGithubService.extractMasternodeGithubUrl(masternodeProfile)).thenReturn(null);
+
+
+        MasternodesOnlineSupplement updatedMasternodesOnlineSupplement =
+                classUnderTest.extractMasternodeProfileContent(existingMasternodesOnlineSupplement, HTTPS_MASTERNODES_ONLINE_CURRENCIES_XAP);
+
+
+        verify(documentFactory).getDocumentBasedOnUrl(HTTPS_MASTERNODES_ONLINE_CURRENCIES_XAP);
+        assertNotNull(updatedMasternodesOnlineSupplement);
+        assertEquals(existingMasternodesOnlineSupplement, updatedMasternodesOnlineSupplement);
+
+        verify(masternodeGithubService, times(0)).extractMasternodeGithubContent(masternodeProfile, existingMasternodesOnlineSupplement);
     }
 
 
