@@ -37,23 +37,30 @@ public class MasternodeGithubService {
     public GithubInfo extractMasternodeGithubInfo(Document masternodeProfile) {
         String masternodeGithubUrl = extractMasternodeGithubUrl(masternodeProfile);
 
+        System.out.println("masternodeGithubUrl: " + masternodeGithubUrl);
 
+        GithubInfo githubInfo = null;
 
-        int beginIndexRepositoryOwner = masternodeGithubUrl.lastIndexOf(HTTPS_GITHUB_COM) + HTTPS_GITHUB_COM.length();
-        int endIndexRepositoryOwner = masternodeGithubUrl.indexOf("/", beginIndexRepositoryOwner);
+        try{
+            int beginIndexRepositoryOwner = masternodeGithubUrl.lastIndexOf(HTTPS_GITHUB_COM) + HTTPS_GITHUB_COM.length();
+            int endIndexRepositoryOwner = masternodeGithubUrl.indexOf("/", beginIndexRepositoryOwner);
 
-        String repositoryOwner = masternodeGithubUrl.substring(beginIndexRepositoryOwner, endIndexRepositoryOwner);
+            String repositoryOwner = masternodeGithubUrl.substring(beginIndexRepositoryOwner, endIndexRepositoryOwner);
 
-        int beginIndexRepositoryName = endIndexRepositoryOwner + 1;
-        int endIndexRepositoryName = masternodeGithubUrl.indexOf("/", beginIndexRepositoryName);
+            int beginIndexRepositoryName = endIndexRepositoryOwner + 1;
+            int endIndexRepositoryName = masternodeGithubUrl.indexOf("/", beginIndexRepositoryName);
 
-//        String repositoryName = masternodeGithubUrl.substring(beginIndexRepositoryName, endIndexRepositoryName);
-        String repositoryName = masternodeGithubUrl.substring(beginIndexRepositoryName);
-        repositoryName = repositoryName.replace("/", "");
+    //        String repositoryName = masternodeGithubUrl.substring(beginIndexRepositoryName, endIndexRepositoryName);
+            String repositoryName = masternodeGithubUrl.substring(beginIndexRepositoryName);
+            repositoryName = repositoryName.replace("/", "");
 
-        GithubInfo githubInfo = new GithubInfo();
-        githubInfo.setRepositoryOwner(repositoryOwner);
-        githubInfo.setRepositoryName(repositoryName);
+            githubInfo = new GithubInfo();
+            githubInfo.setRepositoryOwner(repositoryOwner);
+            githubInfo.setRepositoryName(repositoryName);
+        }
+        catch(StringIndexOutOfBoundsException e){
+
+        }
 
         return githubInfo;
     }
@@ -64,10 +71,12 @@ public class MasternodeGithubService {
         GithubInfo githubInfo = extractMasternodeGithubInfo(masternodeProfile);
 
 
-        Integer githubCommits = githubGraphQlQueryService.
-                retrieveMasternodeGithubTotalCommits(githubInfo.getRepositoryOwner(), githubInfo.getRepositoryName());
+        if(githubInfo != null){
+            Integer githubCommits = githubGraphQlQueryService.
+                    retrieveMasternodeGithubTotalCommits(githubInfo.getRepositoryOwner(), githubInfo.getRepositoryName());
 
-        masternodesOnlineSupplement.setGithubCommits(githubCommits);
+            masternodesOnlineSupplement.setGithubCommits(githubCommits);
+        }
 
 //        if(masternodeGithubUrlDocument != null){
 //            githubCommitsText = masternodeGithubUrlDocument.select("li.commits > a > span").text();
