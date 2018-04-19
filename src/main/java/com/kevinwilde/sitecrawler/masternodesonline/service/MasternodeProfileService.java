@@ -21,7 +21,7 @@ public class MasternodeProfileService {
     public String extractMasternodeProfileUrl(Element masternodeTr){
         Elements masternodePageLinks = masternodeTr.select("tr > td > strong > a");
         String profileHref = masternodePageLinks.attr("href");
-        String masternodeProfileUrl = "https://masternodes.online/" + profileHref;
+        String masternodeProfileUrl = "https://masternodes.online" + profileHref;
         return masternodeProfileUrl;
     }
 

@@ -3,6 +3,7 @@ package com.kevinwilde.sitecrawler.masternodesonline.service;
 import com.cryptocurrencyservices.masternodessuplement.api.client.master_node_online_supplement.api.MasternodesOnlineSupplementApiClient;
 import com.cryptocurrencyservices.masternodessuplement.api.client.master_node_online_supplement.model.MasternodesOnlineSupplement;
 import com.kevinwilde.sitecrawler.masternodesonline.domain.GithubInfo;
+import com.kevinwilde.sitecrawler.masternodesonline.domain.githubInforesponse.RepositoryInfoResponse;
 import com.kevinwilde.sitecrawler.masternodesonline.factory.DocumentFactory;
 import com.kevinwilde.sitecrawler.masternodesonline.service.graphql.GithubGraphQlQueryService;
 import org.jsoup.nodes.Document;
@@ -72,10 +73,12 @@ public class MasternodeGithubService {
 
 
         if(githubInfo != null){
-            Integer githubCommits = githubGraphQlQueryService.
-                    retrieveMasternodeGithubTotalCommits(githubInfo.getRepositoryOwner(), githubInfo.getRepositoryName());
+            RepositoryInfoResponse repositoryInfoResponse = githubGraphQlQueryService.
+                    retrieveRepositoryInfoResponse(githubInfo.getRepositoryOwner(), githubInfo.getRepositoryName());
 
-            masternodesOnlineSupplement.setGithubCommits(githubCommits);
+            masternodesOnlineSupplement.setGithubCommits(repositoryInfoResponse.getData().getRepository().getDefaultBranchRef().getTarget().getHistory().getTotalCount());
+            masternodesOnlineSupplement.setCreatedAt(repositoryInfoResponse.getData().getRepository().getCreatedAt());
+            masternodesOnlineSupplement.setPushedAt(repositoryInfoResponse.getData().getRepository().getPushedAt());
         }
 
 //        if(masternodeGithubUrlDocument != null){

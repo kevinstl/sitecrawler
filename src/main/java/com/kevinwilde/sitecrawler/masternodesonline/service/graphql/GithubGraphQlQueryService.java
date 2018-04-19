@@ -2,7 +2,7 @@ package com.kevinwilde.sitecrawler.masternodesonline.service.graphql;
 
 
 import com.kevinwilde.graphqljavaclient.GraphQlClient;
-import com.kevinwilde.sitecrawler.masternodesonline.domain.githubInforesponse.GithubInfoResponse;
+import com.kevinwilde.sitecrawler.masternodesonline.domain.githubInforesponse.RepositoryInfoResponse;
 import com.kevinwilde.sitecrawler.masternodesonline.factory.GithubGraphQlQueryFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -19,26 +19,19 @@ public class GithubGraphQlQueryService {
     private GithubGraphQlQueryFactory githubGraphQlQueryFactory;
 
 
-    public Integer retrieveMasternodeGithubTotalCommits(String repositoryOwner, String repositoryName) {
 
-        GithubInfoResponse response =
+    public RepositoryInfoResponse retrieveRepositoryInfoResponse(String repositoryOwner, String repositoryName) {
+
+        RepositoryInfoResponse repositoryInfoResponse =
                 graphQlClient.execute(
                         HTTPS_API_GITHUB_COM_GRAPHQL,
                         githubGraphQlQueryFactory.buildCommitsQuery(repositoryOwner, repositoryName),
-                        GithubInfoResponse.class);
+                        RepositoryInfoResponse.class);
 
-        System.out.println("retrieveMasternodeGithubTotalCommits: response: " + response);
+        return repositoryInfoResponse;
 
-        Integer totalCount = null;
-
-        try{
-            totalCount = response.getData().getRepository().getDefaultBranchRef().getTarget().getHistory().getTotalCount();
-        }
-        catch(NullPointerException e){
-//            e.printStackTrace();
-        }
-
-        return totalCount;
     }
+
+
 
 }

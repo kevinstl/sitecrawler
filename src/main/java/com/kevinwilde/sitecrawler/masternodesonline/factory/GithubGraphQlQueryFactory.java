@@ -16,6 +16,8 @@ public class GithubGraphQlQueryFactory {
                 "        }\n" +
                 "      }\n" +
                 "    }\n" +
+                "    createdAt\n" +
+                "    pushedAt\n" +
                 "  }\n" +
                 "}";
     }

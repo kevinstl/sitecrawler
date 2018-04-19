@@ -4,7 +4,7 @@ package com.kevinwilde.sitecrawler.masternodesonline.domain.githubInforesponse;
 import java.util.HashMap;
 import java.util.Map;
 
-public class GithubInfoResponse {
+public class RepositoryInfoResponse {
 
     private Data data;
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();

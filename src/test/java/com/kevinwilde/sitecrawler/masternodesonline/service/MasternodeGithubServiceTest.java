@@ -3,6 +3,8 @@ package com.kevinwilde.sitecrawler.masternodesonline.service;
 import com.cryptocurrencyservices.masternodessuplement.api.client.master_node_online_supplement.api.MasternodesOnlineSupplementApiClient;
 import com.cryptocurrencyservices.masternodessuplement.api.client.master_node_online_supplement.model.MasternodesOnlineSupplement;
 import com.kevinwilde.sitecrawler.masternodesonline.domain.GithubInfo;
+import com.kevinwilde.sitecrawler.masternodesonline.domain.githubInforesponse.Repository;
+import com.kevinwilde.sitecrawler.masternodesonline.domain.githubInforesponse.RepositoryInfoResponse;
 import com.kevinwilde.sitecrawler.masternodesonline.factory.DocumentFactory;
 import com.kevinwilde.sitecrawler.masternodesonline.service.graphql.GithubGraphQlQueryService;
 import org.apache.velocity.Template;
@@ -14,11 +16,13 @@ import org.jsoup.parser.Parser;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Answers;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.io.StringWriter;
+import java.time.OffsetDateTime;
 import java.util.Properties;
 
 import static org.junit.Assert.assertEquals;
@@ -43,6 +47,8 @@ public class MasternodeGithubServiceTest {
     private VelocityContext velocityContext = new VelocityContext();
     private StringWriter stringWriter = new StringWriter();
     private Properties properties = new Properties();
+    private OffsetDateTime createdAt = OffsetDateTime.parse("2018-03-06T20:42:58Z");
+    private OffsetDateTime pushedAt = OffsetDateTime.parse("2018-04-18T21:36:33Z");
 
     @Before
     public void setup(){
@@ -60,6 +66,12 @@ public class MasternodeGithubServiceTest {
     private String expectedRepositoryOwner = "apollondeveloper";
     private String expectedRepositoryName = "ApollonCoin";
     private Integer expectedTotalCommits = Integer.valueOf(5);
+
+    @Mock(answer = Answers.RETURNS_DEEP_STUBS)
+    private RepositoryInfoResponse repositoryInfoResponse;
+
+    @Mock(answer = Answers.RETURNS_DEEP_STUBS)
+    private Repository repository;
 
     @Test
     public void extractMasternodeGithubLink_extractsMasternodeGithubLink() {
@@ -101,6 +113,11 @@ public class MasternodeGithubServiceTest {
     @Test
     public void extractMasternodeGithubContent_extractsMasternodeGithubContent() {
 
+        when(repositoryInfoResponse.getData().getRepository()).thenReturn(repository);
+        when(repository.getDefaultBranchRef().getTarget().getHistory().getTotalCount()).thenReturn(expectedTotalCommits);
+        when(repository.getCreatedAt()).thenReturn(createdAt);
+        when(repository.getPushedAt()).thenReturn(pushedAt);
+
         Document masternodeProfile = buildMasternodeProfile();
 
         MasternodesOnlineSupplement existingMasternodesOnlineSupplement = new MasternodesOnlineSupplement();
@@ -108,8 +125,8 @@ public class MasternodeGithubServiceTest {
 
 
         when(githubGraphQlQueryService.
-                retrieveMasternodeGithubTotalCommits(expectedRepositoryOwner, expectedRepositoryName)).
-                thenReturn(expectedTotalCommits);
+                retrieveRepositoryInfoResponse(expectedRepositoryOwner, expectedRepositoryName)).
+                thenReturn(repositoryInfoResponse);
 
 
         MasternodesOnlineSupplement masternodesOnlineSupplement =
@@ -122,6 +139,11 @@ public class MasternodeGithubServiceTest {
         assertNotNull(masternodesOnlineSupplement);
         assertNotNull(masternodesOnlineSupplement.getGithubCommits());
         assertEquals(expectedTotalCommits, masternodesOnlineSupplement.getGithubCommits());
+
+        assertNotNull(masternodesOnlineSupplement.getCreatedAt());
+        assertEquals(createdAt, masternodesOnlineSupplement.getCreatedAt());
+        assertNotNull(masternodesOnlineSupplement.getPushedAt());
+        assertEquals(pushedAt, masternodesOnlineSupplement.getPushedAt());
 
 //        verify(masternodesOnlineSupplementApiClient).createMasternodesOnlineSupplementUsingPOST("", masternodesOnlineSupplement);
     }

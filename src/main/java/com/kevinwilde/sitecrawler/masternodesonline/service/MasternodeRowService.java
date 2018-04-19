@@ -44,6 +44,9 @@ public class MasternodeRowService {
         masternodesOnlineSupplement.setMinimumWorth(tds.get(10).text());
 
         String masternodeProfileUrl = masternodeProfileService.extractMasternodeProfileUrl(masternodeTr);
+
+        masternodesOnlineSupplement.setMasternodesOnlineUrl(masternodeProfileUrl);
+
         masternodesOnlineSupplement = masternodeProfileService.extractMasternodeProfileContent(masternodesOnlineSupplement, masternodeProfileUrl);
 
 //        String bearerToken = System.getenv("BEARER_TOKEN");

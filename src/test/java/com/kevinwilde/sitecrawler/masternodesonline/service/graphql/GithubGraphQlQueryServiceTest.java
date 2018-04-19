@@ -1,8 +1,7 @@
 package com.kevinwilde.sitecrawler.masternodesonline.service.graphql;
 
 import com.kevinwilde.graphqljavaclient.GraphQlClient;
-import com.kevinwilde.sitecrawler.masternodesonline.domain.githubInforesponse.Data;
-import com.kevinwilde.sitecrawler.masternodesonline.domain.githubInforesponse.GithubInfoResponse;
+import com.kevinwilde.sitecrawler.masternodesonline.domain.githubInforesponse.RepositoryInfoResponse;
 import com.kevinwilde.sitecrawler.masternodesonline.domain.githubInforesponse.Repository;
 import com.kevinwilde.sitecrawler.masternodesonline.factory.GithubGraphQlQueryFactory;
 import org.junit.Test;
@@ -12,7 +11,10 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import java.time.OffsetDateTime;
+
 import static junit.framework.TestCase.assertNull;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -30,15 +32,21 @@ public class GithubGraphQlQueryServiceTest {
     private GraphQlClient graphQlClient;
 
     @Mock(answer = Answers.RETURNS_DEEP_STUBS)
-    private GithubInfoResponse githubInfoResponse;
+    private RepositoryInfoResponse repositoryInfoResponse;
 
     @Mock(answer = Answers.RETURNS_DEEP_STUBS)
     private Repository repository;
 
-    @Test
-    public void retrieveMasternodeGithubTotalCommits_retrievesMasternodeGithubTotalCommits(){
+    private OffsetDateTime createdAt = OffsetDateTime.parse("2018-03-06T20:42:58Z");
+    private OffsetDateTime pushedAt = OffsetDateTime.parse("2018-04-18T21:36:33Z");
 
-        when(githubInfoResponse.getData().getRepository()).thenReturn(repository);
+
+    @Test
+    public void retrieveRepositoryInfoResponse_retrievesRepositoryInfoResponse(){
+
+        when(repositoryInfoResponse.getData().getRepository()).thenReturn(repository);
+        when(repository.getCreatedAt()).thenReturn(createdAt);
+        when(repository.getPushedAt()).thenReturn(pushedAt);
 
         String repositoryOwner = "repositoryOwner";
         String repositoryName = "repositoryName";
@@ -48,44 +56,23 @@ public class GithubGraphQlQueryServiceTest {
         when(githubGraphQlQueryFactory.buildCommitsQuery(repositoryOwner, repositoryName)).thenReturn(query);
         when(graphQlClient.execute(GithubGraphQlQueryService.HTTPS_API_GITHUB_COM_GRAPHQL,
                 query,
-                GithubInfoResponse.class)).thenReturn(githubInfoResponse);
+                RepositoryInfoResponse.class)).thenReturn(repositoryInfoResponse);
 
 
-        Integer totalCommits = classUnderTest.retrieveMasternodeGithubTotalCommits(repositoryOwner, repositoryName);
+        RepositoryInfoResponse repositoryInfoResponse = classUnderTest.retrieveRepositoryInfoResponse(repositoryOwner, repositoryName);
 
 
-        assertNotNull(totalCommits);
-
-        verify(githubGraphQlQueryFactory).buildCommitsQuery(repositoryOwner, repositoryName);
-        verify(graphQlClient).execute(GithubGraphQlQueryService.HTTPS_API_GITHUB_COM_GRAPHQL,
-                query,
-                GithubInfoResponse.class);
-    }
-
-    @Test
-    public void retrieveMasternodeGithubTotalCommits_handlesRepositoryNotFound(){
-
-        when(githubInfoResponse.getData().getRepository()).thenReturn(null);
-
-        String repositoryOwner = "repositoryOwner";
-        String repositoryName = "repositoryName";
-
-        String query = "query";
-
-        when(githubGraphQlQueryFactory.buildCommitsQuery(repositoryOwner, repositoryName)).thenReturn(query);
-        when(graphQlClient.execute(GithubGraphQlQueryService.HTTPS_API_GITHUB_COM_GRAPHQL,
-                query,
-                GithubInfoResponse.class)).thenReturn(githubInfoResponse);
-
-
-        Integer totalCommits = classUnderTest.retrieveMasternodeGithubTotalCommits(repositoryOwner, repositoryName);
-
-
-        assertNull(totalCommits);
+        assertNotNull(repositoryInfoResponse.getData().getRepository().getDefaultBranchRef().getTarget().getHistory().getTotalCount());
+        assertNotNull(repositoryInfoResponse.getData().getRepository().getCreatedAt());
+        assertEquals(createdAt, repositoryInfoResponse.getData().getRepository().getCreatedAt());
+        assertNotNull(repositoryInfoResponse.getData().getRepository().getPushedAt());
+        assertEquals(pushedAt, repositoryInfoResponse.getData().getRepository().getPushedAt());
 
         verify(githubGraphQlQueryFactory).buildCommitsQuery(repositoryOwner, repositoryName);
         verify(graphQlClient).execute(GithubGraphQlQueryService.HTTPS_API_GITHUB_COM_GRAPHQL,
                 query,
-                GithubInfoResponse.class);
+                RepositoryInfoResponse.class);
     }
+
+
 }
