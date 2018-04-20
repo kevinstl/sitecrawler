@@ -76,24 +76,16 @@ public class MasternodeGithubService {
             RepositoryInfoResponse repositoryInfoResponse = githubGraphQlQueryService.
                     retrieveRepositoryInfoResponse(githubInfo.getRepositoryOwner(), githubInfo.getRepositoryName());
 
-            masternodesOnlineSupplement.setGithubCommits(repositoryInfoResponse.getData().getRepository().getDefaultBranchRef().getTarget().getHistory().getTotalCount());
-            masternodesOnlineSupplement.setCreatedAt(repositoryInfoResponse.getData().getRepository().getCreatedAt());
-            masternodesOnlineSupplement.setPushedAt(repositoryInfoResponse.getData().getRepository().getPushedAt());
+            if(repositoryInfoResponse != null &&
+                    repositoryInfoResponse.getData() != null &&
+                    repositoryInfoResponse.getData().getRepository() != null
+                    ){
+                masternodesOnlineSupplement.setGithubCommits(repositoryInfoResponse.getData().getRepository().getDefaultBranchRef().getTarget().getHistory().getTotalCount());
+                masternodesOnlineSupplement.setCreatedAt(repositoryInfoResponse.getData().getRepository().getCreatedAt());
+                masternodesOnlineSupplement.setPushedAt(repositoryInfoResponse.getData().getRepository().getPushedAt());
+            }
         }
 
-//        if(masternodeGithubUrlDocument != null){
-//            githubCommitsText = masternodeGithubUrlDocument.select("li.commits > a > span").text();
-////            System.out.println(githubCommits);
-//        }
-//        if(!StringUtils.isEmpty(githubCommitsText)){
-//            githubCommitsText = githubCommitsText.replace(",", "");
-//            githubCommits = new Integer(githubCommitsText);
-//            masternodesOnlineSupplement.setGithubCommits(githubCommits);
-//        }
-//
-////        System.out.println("masternodeGithubUrlDocument: " + masternodeGithubUrlDocument);
-//        System.out.println("masternodesOnlineSupplement: " + masternodesOnlineSupplement);
-//
 //        String bearerToken = System.getenv("BEARER_TOKEN");
 //        masternodesOnlineSupplementApiClient.createMasternodesOnlineSupplementUsingPOST(
 //                bearerToken,

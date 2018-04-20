@@ -27,6 +27,7 @@ import java.util.Properties;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -144,6 +145,34 @@ public class MasternodeGithubServiceTest {
         assertEquals(createdAt, masternodesOnlineSupplement.getCreatedAt());
         assertNotNull(masternodesOnlineSupplement.getPushedAt());
         assertEquals(pushedAt, masternodesOnlineSupplement.getPushedAt());
+
+//        verify(masternodesOnlineSupplementApiClient).createMasternodesOnlineSupplementUsingPOST("", masternodesOnlineSupplement);
+    }
+
+
+    @Test
+    public void extractMasternodeGithubContent_handlesNullRepositoryInfoResponse() {
+
+
+        Document masternodeProfile = buildMasternodeProfile();
+
+        MasternodesOnlineSupplement existingMasternodesOnlineSupplement = new MasternodesOnlineSupplement();
+
+
+
+        when(githubGraphQlQueryService.
+                retrieveRepositoryInfoResponse(expectedRepositoryOwner, expectedRepositoryName)).
+                thenReturn(null);
+
+
+        MasternodesOnlineSupplement masternodesOnlineSupplement =
+                classUnderTest.extractMasternodeGithubContent(
+                        masternodeProfile,
+                        existingMasternodesOnlineSupplement
+                );
+
+
+        assertNull(masternodesOnlineSupplement.getGithubCommits());
 
 //        verify(masternodesOnlineSupplementApiClient).createMasternodesOnlineSupplementUsingPOST("", masternodesOnlineSupplement);
     }
